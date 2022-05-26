@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react"
 // le hook useParams va nous permettre de chercher l'id
-import { useParams, useNavigate } from "react-router-dom"
+import { useParams, useNavigate, Link } from "react-router-dom"
 import axios from "axios"
 import { AuthContext } from "../helpers/AuthContext"
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
@@ -16,6 +16,7 @@ function Post() {
     const [newComment, setNewComment] = useState("")
     const { authState } = useContext(AuthContext)
 
+
     let navigate = useNavigate()
 
     useEffect(() => {
@@ -27,6 +28,7 @@ function Post() {
         axios.get(`http://localhost:3001/comments/${id}`).then((response) => {
             setComments(response.data);
         });
+
     }, [id]);
 
     const addComment = () => {
@@ -101,54 +103,58 @@ function Post() {
     }
 
     return (
+
         <div className="postPage">
             <div className="postContainer">
-            <div className="leftSide">
-                <div className="post" >
-                    <div className="title"
-                        onClick={() => {
-                            if (authState.username === postObject.username) {
-                                editPost("title")
-                            }
-                        }}
-                    > {postObject.title}</div>
-                    <div className="body">
-                        <div className="LinkPreview">
-                            <div>
-                                {postObject.postLink ? (         // si il n'y a pas de postLink, la div est vide
-                                    < LinkPreview url={postObject.postLink} />
-                                ) : (<></>)}
-                            </div>
-                            <div className="ContainerFile">
-                                <div className="borderFile">
-                                    {postObject.file ? (         // si il n'y a pas de fileLink, la div est vide
-                                        <a href={postObject.file} target="_blank"  rel="noopener noreferrer">
-                                        < img src={postObject.file} alt="document fourni par l'utilisateur" />
-                                        </a>
-                                    ) : (<></>)}
-                                </div>
-                            </div>
-                        </div>
-                        <div className="editPost"
+                <div className="leftSide">
+                    <div className="post" >
+                        <div className="title"
                             onClick={() => {
                                 if (authState.username === postObject.username) {
-                                    editPost("body")
+                                    editPost("title")
                                 }
                             }}
-                        > {postObject.postText}</div>
-                    </div>
-                    <div className="footer">
-                        <div className="userName"> {postObject.username} </div>
-                        {/* si l'ulisateur connecté est l'auteur du post, alors le bouton apparait */}
-                        {(authState.username === postObject.username || authState.username === "isAdmin" )
-                            && (<div className="buttons" id="delete">
-                                <DeleteForeverIcon onClick={() => { deletePost(postObject.id) }}
-                                />
+                        > {postObject.title}</div>
+                        <div className="body">
 
-                            </div>)}
+                            <div className="LinkPreview">
+                                {postObject.postLink ? (         
+                                    < LinkPreview url={postObject.postLink} />
+                                ) : (<></>)}
+                                
+                                {postObject.file ? (  
+                                <div className="ContainerFile">
+                                    <div className="borderFile">
+                                                
+                                            <a href={postObject.file} target="_blank" rel="noopener noreferrer">
+                                                < img src={postObject.file} alt="document fourni par l'utilisateur" />
+                                            </a>
+                                         </div>
+                                         </div>   
+                                        ) : (<></>)}
+                                    
+                            </div>
+                            <div className="editPost"
+                                onClick={() => {
+                                    if (authState.username === postObject.username) {
+                                        editPost("body")
+                                    }
+                                }}
+                            > {postObject.postText}</div>
+                        </div>
+                        <div className="footer">
+                            <Link to={`/profile/${postObject.UserId}`}> {postObject.username} </Link>
+                            {/* si l'ulisateur connecté est l'auteur du post, alors le bouton apparait */}
+                            {(authState.username === postObject.username || authState.username === "isAdmin")
+                                && (<div className="buttons" id="delete">
+                                    <DeleteForeverIcon onClick={() => { deletePost(postObject.id) }}
+                                    />
+
+
+                                </div>)}
+                        </div>
                     </div>
                 </div>
-            </div>
             </div>
             <div className="rightSide">
                 <div className="addCommentContainer">

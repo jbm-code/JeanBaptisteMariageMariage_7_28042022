@@ -28,7 +28,7 @@ function Profile() {
     }, [])  // eslint-disable-line react-hooks/exhaustive-deps
 
     const deleteUser = () => {
-        alert("le compte a été supprimé")
+    
         axios.delete(`http://localhost:3001/auth/basicinfo/${id}`, {
             headers: { accesToken: localStorage.getItem("accesToken") }
         })
@@ -41,6 +41,7 @@ function Profile() {
                 })
                 navigate("/login")
             })
+        alert("le compte a été supprimé")    
     }
 
     return (

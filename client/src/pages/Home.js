@@ -89,11 +89,11 @@ function Home() {
               <div className="body">
 
                 <div className="LinkPreview">
-                  {value.postLink ? (         // si il n'y a pas de postLink, la div est vide
+                  {value.postLink ? (         
                     < LinkPreview url={value.postLink} />
                   ) : (<></>)}
 
-                  {value.file ? (         // si il n'y a pas de fileLink, la div est vide
+                  {value.file ? (         
                     <div className="ContainerFile">
                       <div className="borderFile">
                         <a href={value.file} target="_blank" rel="noopener noreferrer">

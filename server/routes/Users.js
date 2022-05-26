@@ -15,19 +15,23 @@ require('dotenv').config()
 
 // REGISTRATION
 router.post("/", async (req, res) => {
-    const { username, password } = req.body
-    const user = await Users.findOne({ where: { username: username } })
-    if (!user) {
+    const { username, email, password } = req.body
+    const user = await Users.findOne({ where: { username: username} })
+    const verifEmail = await Users.findOne({ where: { email: email} })
+    
+    if (user) return res.json({error: "le nom d'utilisateur est déja utilisé !"})
+    if (verifEmail) return res.json({error: "cet email est déja utilisé !"})
+
+    else { 
         bcrypt.hash(password, 10).then((hash) => {
             Users.create({  // on enregistre le username et le hash dans la base de donnée
                 username: username,
+                email: email,
                 password: hash
             })
             res.json("utilisateur enregistré")
-        }) 
-    } else {
-        res.json({error: "l'utilisateur existe déja !"})
-    }
+        })
+    } 
 })
 
 // LOGIN 

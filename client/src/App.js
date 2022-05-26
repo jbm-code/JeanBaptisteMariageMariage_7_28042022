@@ -1,5 +1,5 @@
 import "./App.css";
-import logo1 from "./images/icon-left-font-monochrome-white.png"
+import logo1 from "./images/icon-left-font-monochrome-black.png"
 // import logo2 from "./images/icon-left-font.png"
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom"
 import Home from "./pages/Home.js"
