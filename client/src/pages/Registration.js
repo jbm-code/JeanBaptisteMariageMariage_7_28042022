@@ -18,7 +18,7 @@ function Registration() {
     const validationSchema = Yup.object().shape({
         username: Yup.string()
             .min(3, "trop petit")
-            .max(20, "trop long!")
+            .max(8, "trop long!")
             .required("Ce champ est obligatoire"),
         password: Yup.string()
             .min(5, "trop petit")

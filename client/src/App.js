@@ -1,7 +1,7 @@
 import "./App.css";
 import logo1 from "./images/icon-left-font-monochrome-white.png"
 // import logo2 from "./images/icon-left-font.png"
-import { BrowserRouter, Routes, Route, Link, Router } from "react-router-dom"
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom"
 import Home from "./pages/Home.js"
 import CreatePost from "./pages/CreatePost.js";
 import PostAddIcon from '@mui/icons-material/PostAdd';
@@ -29,11 +29,11 @@ function App() {
       function (error) {
         const originalRequest = error.config;
 
-        if (error.response.status === 401 && originalRequest.url === 
-          "http://localhost:3001/auth/refreshToken" ){   // ????????????????????????????????????????
-                 Router.push('/login');
-                 return Promise.reject(error);
-             }
+        // if (error.response.status === 401 && originalRequest.url === 
+        //   "http://localhost:3001/auth/refreshToken" ){   // ????????????????????????????????????????
+        //          Router.push('/login');
+        //          return Promise.reject(error);
+        //      }
 
         if (error.response.status === 401 && !originalRequest._retry) {
 
@@ -93,39 +93,41 @@ function App() {
           <div className="navbar">
             <div className="links">
 
-              {!authState.status ? (
-                <>
-                  <div className="logo1">
-                    <img src={logo1} alt="logo"
-                      
-                    ></img>
-                  </div>
-                  <Link to="/registration" > Créer un compte </Link>
-                  <Link to="/login"> Se connecter </Link>
-                </>
-              ) : (
-                <>
-                  <div className="logo1">
-                    <Link to="/" ><img src={logo1} alt="logo"
-                      
-                    ></img></Link>
-                  </div>
-                  <div className="createPost">
-                    <Link to="/createpost" ><PostAddIcon /></Link>
-                  </div>
-                </>
-              )}
-            </div>
-            <div className="loggedInContainer">
-              <h1>
-                <Link to={`/profile/${authState.id}`}> {authState.username} </Link>
-              </h1>
-              <div className="logout">
-                <Link to={"/login"}>
-                {authState.status && <ExitToAppIcon onClick={logout} />}
-                </Link>
-              </div>
-            </div>
+              {!authState.status ? 
+                (
+                    <>
+                      <div className="logo1">
+                        <img src={logo1} alt="logo"
+                          
+                        ></img>
+                      </div>
+                      <Link to="/registration" > Créer un compte </Link>
+                      <Link to="/login"> Se connecter </Link>
+                    </>
+                ) : (
+                    <>
+                      <div className="logo1">
+                        <Link to="/" ><img src={logo1} alt="logo"
+                          
+                        ></img></Link>
+                      </div>
+                      <div className="createPost">
+                        <Link to="/createpost" ><PostAddIcon /></Link>
+                      </div>
+                    
+                      <div className="loggedInContainer">
+                        <h1>
+                          <Link to={`/profile/${authState.id}`}> {authState.username} </Link>
+                        </h1>
+                        <div className="logout">
+                          <Link to={"/login"}>
+                          {authState.status && <ExitToAppIcon onClick={logout} />}
+                          </Link>
+                        </div>
+                      </div>
+                    </>
+                 )}
+                 </div>
 
           </div>
           <Routes>

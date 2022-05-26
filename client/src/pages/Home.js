@@ -71,40 +71,37 @@ function Home() {
     <div className="homeListOfPost">
       {listOfPosts.map((value, key) => {
         var t = value.createdAt
-        var d = t.split(/[T]/) 
-        var date =(d[0])
+        var d = t.split(/[T]/)
+        var date = (d[0])
         var d2 = date.split(/[-]/)
-        var date2 = (d2[2]+-d2[1]+-d2[0])
+        var date2 = (d2[2] + -d2[1] + -d2[0])
 
-        
+
         return (
           // le hook useNavigate nous permet d'inserer dans l'url la value.id
 
           <div key={key} className="postContainer">
 
-            <div  className="post">
+            <div className="post">
 
               <div className="title"> {value.title}
               </div>
               <div className="body">
 
                 <div className="LinkPreview">
+                  {value.postLink ? (         // si il n'y a pas de postLink, la div est vide
+                    < LinkPreview url={value.postLink} />
+                  ) : (<></>)}
 
-                  <div>
-                    {value.postLink ? (         // si il n'y a pas de postLink, la div est vide
-                      < LinkPreview url={value.postLink} />
-                    ) : (<></>)}
-                  </div>
-                  
-                  <div className="ContainerFile">
-                    <div className="borderFile">
-                      {value.file ? (         // si il n'y a pas de fileLink, la div est vide
-                        <a href={value.file} target="_blank"  rel="noopener noreferrer">
-                        < img src={value.file} alt="document fourni par l'utilisateur" />
+                  {value.file ? (         // si il n'y a pas de fileLink, la div est vide
+                    <div className="ContainerFile">
+                      <div className="borderFile">
+                        <a href={value.file} target="_blank" rel="noopener noreferrer">
+                          < img src={value.file} alt="document fourni par l'utilisateur" />
                         </a>
-                      ) : (<></>)}
+                      </div>
                     </div>
-                  </div>
+                  ) : (<></>)}
 
                 </div>
                 <div className="bodyText">

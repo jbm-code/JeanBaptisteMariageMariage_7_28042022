@@ -27,8 +27,6 @@ function Profile() {
 
     }, [])  // eslint-disable-line react-hooks/exhaustive-deps
 
-    console.log(authState);
-
     const deleteUser = () => {
         alert("le compte a été supprimé")
         axios.delete(`http://localhost:3001/auth/basicinfo/${id}`, {
@@ -63,8 +61,8 @@ function Profile() {
 
                     return (
                         // le hook useNavigate nous permet d'inserer dans l'url la value.id
-                        <div className="postContainer">
-                            <div key={key} className="post">
+                        <div key={key} className="postContainer">
+                            <div  className="post">
                                 <div className="title"> {value.title}
                                 </div>
                                 <div className="body">
