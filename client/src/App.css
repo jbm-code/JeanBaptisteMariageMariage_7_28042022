@@ -265,17 +265,18 @@ border: 1px, solid, black;
   height: 35px;
   margin-top: 10px;
   margin-bottom: 10px;
-  border: 1px solid white;
+  border: 2px solid var(--main-bg-color);
   border-radius: 5px;
   padding-left: 10px;
   font-size: 13px;
   background-color: rgba(255, 255, 255, 0.8);
 }
 
+
 .formContainer button {
   margin-top: 15px;
   height: 35px;
-  border: 1px solid white;
+  border: 2px solid var(--main-bg-color);
   background-color: var(--3-bg-color);
   border-radius: 5px;
   color: black;
@@ -283,6 +284,10 @@ border: 1px, solid, black;
 
 .formContainer input {
   height: 35px;
+  color: black;
+}
+.formContainer #inputFile{
+  color:white;
 }
 .formContainer button:hover {
   cursor: pointer;
@@ -441,11 +446,13 @@ cursor: pointer;
   border-radius: 8px;
   margin: 10px;
   background-color: rgba(255, 255, 255, 0.8);
+  border: 2px solid var(--main-bg-color);
   font-family: Lato;
 }
 
 .loginContainer button {
   background-color:var(--3-bg-color);
+  border: 2px solid var(--main-bg-color);
   color: black;
   width: 300px;
   height: 35px;

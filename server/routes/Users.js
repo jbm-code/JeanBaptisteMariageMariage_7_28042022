@@ -48,14 +48,14 @@ router.post("/login", async (req, res) => {
             return res.json({ error: "le mot de passe n'est pas valide" })
 
             const accesToken = sign({ username: user.username, id: user.id },
-                process.env.ACCESS_TOKEN, { expiresIn: "24h" }
+                process.env.ACCESS_TOKEN, { expiresIn: "600s" }
             )
             const refreshToken = sign({ username: user.username, id: user.id },
                 process.env.REFRESH_TOKEN_SECRET, { expiresIn: "1y" }
             )
             res.json({
                 accessToken: accesToken,
-                tokenExpireIn: "24h",
+                tokenExpireIn: "10 minutes",
                 refreshToken: refreshToken,
                 refreshTokenExpireIn: "1 Year",
                 username: username,
@@ -75,11 +75,12 @@ router.post("/refreshToken", async (req, res) => {
     const username = verifUser.username
     //on vérifie le validité dans la bdd
     const user = await Users.findOne({ where: { username: username } })
-    if (!user)
-        res.json({ error: "l'utilisateur n'est pas enregistré" })
+    if (!user) {
+        return res.status(401).json({ error: "l'utilisateur n'est pas enregistré", status: 401 })
+    }   
     //on créé un nouvel accessToken
     const NewAccessToken = sign({ username: user.username, id: user.id },
-        process.env.ACCESS_TOKEN, { expiresIn: "24h" })
+        process.env.ACCESS_TOKEN, { expiresIn: "600s" })
     const NewRefreshToken = sign({ username: user.username, id: user.id },
         process.env.REFRESH_TOKEN_SECRET, { expiresIn: "1y" })
     res.json({

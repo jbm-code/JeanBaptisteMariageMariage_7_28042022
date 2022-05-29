@@ -2,7 +2,7 @@
   "development": {
     "username": "admin",
     "password": "password",
-    "database": "TutorialDB",
+    "database": "Groupomania",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },

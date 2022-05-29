@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useContext } from "react"
-// le hook useParams va nous permettre de chercher l'id
 import { useParams, useNavigate, Link } from "react-router-dom"
 import axios from "axios"
 import { AuthContext } from "../helpers/AuthContext"
@@ -10,13 +9,11 @@ import { LinkPreview } from '@dhaiwat10/react-link-preview';
 
 
 function Post() {
-    let { id } = useParams()
+    let { id } = useParams() // le hook useParams va nous permettre de chercher l'id dans l'url
     const [postObject, setPostObject] = useState({})
     const [comments, setComments] = useState([])
     const [newComment, setNewComment] = useState("")
     const { authState } = useContext(AuthContext)
-
-
     let navigate = useNavigate()
 
     useEffect(() => {
@@ -28,20 +25,15 @@ function Post() {
         axios.get(`http://localhost:3001/comments/${id}`).then((response) => {
             setComments(response.data);
         });
-
     }, [id]);
 
     const addComment = () => {
         axios
             .post("http://localhost:3001/comments", {
                 commentBody: newComment,
-                PostId: id,
-            },
-                {
-                    headers: {
-                        accesToken: localStorage.getItem("accesToken")
-                    }
-                })
+                PostId: id },
+                { headers: { accesToken: localStorage.getItem("accesToken") }
+            })
             .then((response) => {
                 if (response.data.error) {
                     alert("vous devez vous connecter pour poster un commentaire");
@@ -101,7 +93,6 @@ function Post() {
             setPostObject({ ...postObject, postText: newPostText })  // on destructure puis on met a jour title       
         }
     }
-
     return (
 
         <div className="postPage">
@@ -188,5 +179,4 @@ function Post() {
         </div>
     )
 }
-
 export default Post

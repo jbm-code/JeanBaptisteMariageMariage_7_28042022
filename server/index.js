@@ -29,7 +29,7 @@ app.use('/images', express.static(path.join(__dirname, 'images')))
 
 
 
-// Sequelize est un ORM qui permet de mapper les classes métier avec les tables d'un SGBDR en JavaScript. 
+// Sequelize est un ORM (Object Relational Mapping), qui permet l'utilisation de la base de données MySQL. 
 db.sequelize.sync().then(() => {
     app.listen(3001, () => {
         console.log("Votre server fonctionne sur le port 3001 !");

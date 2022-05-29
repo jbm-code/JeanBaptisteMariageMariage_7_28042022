@@ -32,17 +32,12 @@ router.get("/byuserId/:id", async (req,res) => {
 
 //POST
 router.post("/", validateToken, multer, async (req, res) => {
-    // console.log("1",req);
-    // console.log("1",req.file);
     const post = (req.body)    //on récupère les data du corps de la requête 
-  
     post.username = req.user.username  // on recupère le username, traduit du token par le middleware
     post.UserId = req.user.id  
 
     if (req.file)   post.file = (`${req.protocol}://${req.get('host')}/images/${req.file.filename}`) 
-    // avant on avait if (pos.file)
    
-    console.log("2",post);
     await Posts.create(post)   // on insère les données dans la db
     res.json(post)
 })

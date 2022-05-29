@@ -29,14 +29,24 @@ function App() {
       function (error) {
         const originalRequest = error.config;
 
-        // if (error.response.status === 401 && originalRequest.url === 
-        //   "http://localhost:3001/auth/refreshToken" ){   // ????????????????????????????????????????
-        //          Router.push('/login');
-        //          return Promise.reject(error);
-        //      }
+        if (error.response.status === 401 
+               && originalRequest.url === "http://localhost:3001/auth/refreshToken" ){ 
+                 // si la requête qui echoue en 401 vient de l'url "refreshToken"
+                console.log("le compte de l'utilisateur n'existe pas")
+                localStorage.removeItem("accesToken")
+                localStorage.removeItem("refreshToken")
+                setAuthState({
+                  username: "",
+                  id: 0,
+                  status: false
+                })
+               alert("le compte de l'utilisateur n'existe pas, veuillez contacter l'entreprise")
+               return Promise.reject(error)
+                 
+             }
 
         if (error.response.status === 401 && !originalRequest._retry) {
-
+                  // si la requête a un status 401, puis echoue une deuxieme fois
           originalRequest._retry = true;
           return axios.post("http://localhost:3001/auth/refreshToken",
           {
@@ -46,12 +56,8 @@ function App() {
             if (res.status === 200) {
               localStorage.setItem("accesToken", res.data.accessToken)
               localStorage.setItem("refreshToken", res.data.refreshToken)
-              axios.defaults.headers.common['accesToken'] = { accesToken:  localStorage.getItem("accesToken")}
-              // setAuthState({
-              //   username: res.data.username,
-              //   id: res.data.id,
-              //   status: true
-              // })
+              originalRequest.headers.accesToken = localStorage.getItem("accesToken")
+              
               return axios(originalRequest)
             }
           })

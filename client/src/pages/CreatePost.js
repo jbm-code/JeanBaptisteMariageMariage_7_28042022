@@ -22,7 +22,6 @@ function CreatePost() {
             navigate("/login")
         }
     })
-
     const validationSchema = Yup.object().shape({
         title: Yup.string()
             .min(3, "le titre doit contenir entre 3 et 20 caractères")
@@ -42,9 +41,6 @@ function CreatePost() {
         <Formik
             initialValues={initialValues}
             onSubmit={async (values) => {
-                // console.log(values);
-                // console.log(values.file);
-
                 let data = new FormData()
                 data.append ("file", values.file)
                 data.append ("title", values.title)
@@ -56,9 +52,6 @@ function CreatePost() {
                     })
                     // .then((console.log("larequête axios sont finies", values)))
                     .then ( navigate("/"))
-
-
-
             }}
             validationSchema={validationSchema}>
             {(formProps) => (
@@ -93,12 +86,12 @@ function CreatePost() {
 
                     <label>Télécharger un fichier</label>
                     <input
+                        id="inputFile"
                         type="file"
                         name="file"
                         onChange={(event) =>
                             formProps.setFieldValue("file", event.target.files[0])
                         }
-
                     />
                     <button type="submit">Valider</button>
                 </Form>
@@ -106,5 +99,4 @@ function CreatePost() {
         </Formik>
     </div>
 }
-
 export default CreatePost

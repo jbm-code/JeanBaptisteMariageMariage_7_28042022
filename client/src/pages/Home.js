@@ -7,17 +7,14 @@ import { useNavigate, Link } from "react-router-dom"
 // icone de like
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import { LinkPreview } from '@dhaiwat10/react-link-preview';
-//import { AuthContext } from "../helpers/AuthContext"
 
 function Home() {
   const [listOfPosts, setListOfPosts] = useState([])
   const [likedPosts, setLikedPosts] = useState([])
-  //const { authState } = useContext(AuthContext)
   let navigate = useNavigate()
 
-
   useEffect(() => {
-    if (!localStorage.getItem("accesToken")) {       // si on n'est pas connecté, alors on est redirigé vers le login
+    if (!localStorage.getItem("accesToken")) {  // si on n'est pas connecté, => vers le login
       navigate("/login")
     } else {
       // dans le frontend, axios va chercher les données du backend/serveur.
@@ -40,21 +37,23 @@ function Home() {
       { PostId: postId },
       { headers: { accesToken: localStorage.getItem("accesToken") } }
     ).then((response) => {
+
       setListOfPosts(
         listOfPosts.map((post) => {
-          if (post.id === postId) {               //grace au if, on trouve le post dont le id correspond
-            if (response.data.liked) {            // si liked = true
-              return { ...post, Likes: [...post.Likes, 0] }
-            } else {                              // sinon liked = false
-              const likesArray = post.Likes
-              likesArray.pop()                    // pop() est une fonction JS, qui supprime un élément (de length)        
-              return { ...post, Likes: likesArray }
+          if (post.id === postId) {                 //on cible le id du post 
+            if (response.data.liked) {              // si on veut liker
+              return { ...post, Likes: [...post.Likes, 0] } // likes = liste des ultilisateurs qui aiment le post
+            } else {                                // sinon liked = false
+              const likesArray = post.Likes       
+              likesArray.pop()                      // pop() est une fonction JS, qui supprime un élément (de length)        
+              return { ...post, Likes: likesArray } // on supprime un utilisateur qui n'aiment plus
             }
           } else {
             return post
           }
         })
       )
+
       if (likedPosts.includes(postId)) {
         setLikedPosts(
           likedPosts.filter((id) => {    // si le like est enlevé, on le supprime de la liste
@@ -75,19 +74,13 @@ function Home() {
         var date = (d[0])
         var d2 = date.split(/[-]/)
         var date2 = (d2[2] + -d2[1] + -d2[0])
-
-
         return (
           // le hook useNavigate nous permet d'inserer dans l'url la value.id
-
           <div key={key} className="postContainer">
-
             <div className="post">
-
               <div className="title"> {value.title}
               </div>
               <div className="body">
-
                 <div className="LinkPreview">
                   {value.postLink ? (         
                     < LinkPreview url={value.postLink} />
@@ -135,5 +128,4 @@ function Home() {
     </div>
   );
 }
-
 export default Home

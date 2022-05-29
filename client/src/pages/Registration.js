@@ -13,8 +13,6 @@ function Registration() {
         postText: "",
         password: ""
     }
-
-
     const validationSchema = Yup.object().shape({
         username: Yup.string()
             .min(3, "trop petit")
@@ -58,7 +56,6 @@ function Registration() {
         <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
             <div >
                 <Form className="formContainer">
-
                     <label>Nom d'utilisateur</label>
                     <ErrorMessage name="username" component="span" />
                     <Field
@@ -67,7 +64,6 @@ function Registration() {
                         name="username"
                         placeholder="(Ex. John...)">
                     </Field>
-
                     <label>E-Mail</label>
                     <ErrorMessage name="email" component="span" />
                     <Field
@@ -76,7 +72,6 @@ function Registration() {
                         name="email"
                         placeholder="(Ex. John@groupomania.com...)">
                     </Field>
-
                     <label>Mot de passe: </label>
                     <ErrorMessage name="password" component="span" />
                     <Field
@@ -86,8 +81,6 @@ function Registration() {
                         name="password"
                         placeholder="Votre mot de passe..."
                     />
-
-
                     <button type="submit">Créer un compte</button>
                 </Form>
             </div>

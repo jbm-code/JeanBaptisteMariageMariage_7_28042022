@@ -5,7 +5,6 @@ const router = express.Router();
 const { Comments } = require("../models");
 const { validateToken } = require("../middlewares/Authmiddleware")
 
-// sur la route définie http://localhost:3001/comments + /:postId"
 router.get("/:postId", async (req, res) => {
   const postId = req.params.postId;
    // sequelize va chercher dans la table Comments, le postId
@@ -13,8 +12,6 @@ router.get("/:postId", async (req, res) => {
   res.json(comments);
 });
 
-// sur la route définie http://localhost:3001/comments
-// si le token est validé par notre middleware et jsonwebtoken, alors la création du post est acceptée
 router.post("/", validateToken, async (req, res) => {
   const comment = req.body;
   const username = req.user.username   //req.user qui nous vient de validateToken
