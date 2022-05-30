@@ -71,26 +71,30 @@ function Post() {
     const editPost = (option) => {
         if (option === "title") {
             let newTitle = prompt("Entrez le nouveau titre")
-            axios.put("http://localhost:3001/posts/title",
-                {
-                    newTitle: newTitle,
-                    id: id                  //id de useParams() 
-                },
-                {
-                    headers: { accesToken: localStorage.getItem("accesToken") }
-                })
-            setPostObject({ ...postObject, title: newTitle })  // on destructure sePostObject, puis on met a jour title
+                if (newTitle) {
+                    axios.put("http://localhost:3001/posts/title",
+                        {
+                            newTitle: newTitle,
+                            id: id                  //id de useParams() 
+                        },
+                        {
+                            headers: { accesToken: localStorage.getItem("accesToken") }
+                        })
+                    setPostObject({ ...postObject, title: newTitle })  // on destructure sePostObject, puis on met a jour title
+                } else if (newTitle === null) return false
         } else {
             let newPostText = prompt("Entrez le nouveau texte")
-            axios.put("http://localhost:3001/posts/postText",
-                {
-                    newText: newPostText,
-                    id: id                  //id de useParams() 
-                },
-                {
-                    headers: { accesToken: localStorage.getItem("accesToken") }
-                })
-            setPostObject({ ...postObject, postText: newPostText })  // on destructure puis on met a jour title       
+                if (newPostText) {
+                    axios.put("http://localhost:3001/posts/postText",
+                        {
+                            newText: newPostText,
+                            id: id                  //id de useParams() 
+                        },
+                        {
+                            headers: { accesToken: localStorage.getItem("accesToken") }
+                        })
+                    setPostObject({ ...postObject, postText: newPostText })  // on destructure puis on met a jour title       
+                } else if (newPostText === null) return false
         }
     }
     return (
