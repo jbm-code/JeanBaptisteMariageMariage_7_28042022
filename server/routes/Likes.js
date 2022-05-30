@@ -7,8 +7,7 @@ const { validateToken } = require("../middlewares/Authmiddleware")
 
 router.post("/", validateToken, async (req, res) => {
   const { PostId } = req.body;
-  const UserId = req.user.id;  // req.user qui nous vient du middleware validateToken
-
+  const UserId = req.user.id;  // req.user qui nous vient du middleware validateToke
   const found = await Likes.findOne({
     where: { PostId: PostId, UserId: UserId },
   });
@@ -21,6 +20,7 @@ router.post("/", validateToken, async (req, res) => {
     });
     res.json({liked: false});
   }
+  
 });
 
 module.exports = router;

@@ -39,6 +39,7 @@ function Post() {
                     alert("vous devez vous connecter pour poster un commentaire");
                 } else {
                     const commentToAdd = {
+                        id: response.data.id,
                         commentBody: newComment,
                         username: response.data.username
                     };
@@ -129,7 +130,7 @@ function Post() {
                                         ) : (<></>)}
                                     
                             </div>
-                            <div className="editPost"
+                            <div className="bodyText"
                                 onClick={() => {
                                     if (authState.username === postObject.username) {
                                         editPost("body")

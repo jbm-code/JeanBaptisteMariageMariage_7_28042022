@@ -5,9 +5,12 @@ const validateToken = (req, res, next) => {
 
     if (!accesToken) return res.json({ error: "Vous n'êtes pas connecté"})
 
+    
+
     try {
         const validToken = verify(accesToken, process.env.ACCESS_TOKEN)
         req.user = validToken  //lors de l'authentification, on rend le user accessible dans la requête
+        console.log("coucou",validToken)
         if (validToken) {
             return next()
         }

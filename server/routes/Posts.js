@@ -5,6 +5,7 @@ const router = express.Router()
 const { Posts, Likes } = require("../models")
 const multer = require("../middlewares/multer-config")
 const {validateToken} = require ("../middlewares/Authmiddleware")
+const fs = require ("fs") // file-system
 
 // findAll() et create() sont des fonctions de sequelize, qui agissent sur MySQL (!! fonctions asynchrones)
 router.get("/", validateToken, async (req, res) => {        
@@ -66,13 +67,18 @@ router.put("/postDocument", validateToken, async (req, res) => {
 //SUPPRESSION DE POST
 router.delete("/:postId", validateToken, async (req,res) => {
     const postId = req.params.postId
-    // même principe que pour comments, sequelize supprime le post ciblé dans la base de données
-    await Posts.destroy({
-        where: {
-          id: postId,
-        }
-      }) 
+    const post = await Posts.findByPk(postId)
+    const filename = post.file.split("/images/")[1]
+        if (filename) 
+            fs.unlink (`./images/${filename}`, () => { })  
+        await Posts.destroy({
+            where: {
+            id: postId,
+            }
+        })      
+         
       res.json("post supprimé du backend")
+    
 })
 
 module.exports = router

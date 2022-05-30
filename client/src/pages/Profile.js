@@ -92,11 +92,6 @@ function Profile() {
                                 </div>
                                 <div className="footer">
                                     <div className="userName"> {value.username}  <div className="date">. posté le {date2}</div></div>
-
-                                    <div className="buttons">
-
-                                        <label> {value.Likes.length} </label>
-                                    </div>
                                 </div>
                             </div>
                         </div>
