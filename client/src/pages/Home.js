@@ -14,6 +14,7 @@ function Home() {
   let navigate = useNavigate()
 
   useEffect(() => {
+    try {
     if (!localStorage.getItem("accesToken")) {  // si on n'est pas connecté, => vers le login
       navigate("/login")
     } else {
@@ -29,6 +30,7 @@ function Home() {
         }))
       })
     }
+  } catch (error) {navigate("/login") }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   const likeAPost = (postId) => {
@@ -63,7 +65,9 @@ function Home() {
       } else {
         setLikedPosts([...likedPosts, postId]); // si le like est nouveau, on l'ajoute a la liste
       }
-    });
+    }
+    );
+   
   }
 
   return (

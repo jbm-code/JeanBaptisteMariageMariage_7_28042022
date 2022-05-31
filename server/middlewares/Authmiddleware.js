@@ -1,16 +1,14 @@
 const {verify} = require("jsonwebtoken")
+const { Users } = require("../models")
 
-const validateToken = (req, res, next) => {
+const validateToken = async (req, res, next) => {
     const accesToken = req.header("accesToken")
 
     if (!accesToken) return res.json({ error: "Vous n'êtes pas connecté"})
 
-    
-
     try {
         const validToken = verify(accesToken, process.env.ACCESS_TOKEN)
         req.user = validToken  //lors de l'authentification, on rend le user accessible dans la requête
-        console.log("coucou",validToken)
         if (validToken) {
             return next()
         }

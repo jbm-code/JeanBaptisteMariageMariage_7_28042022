@@ -17,6 +17,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 function App() {
+
   // par defaut, utilisateur non authentifié -> affichage registration et login
   const [authState, setAuthState] = useState({
     username: "",
@@ -32,7 +33,6 @@ function App() {
         if (error.response.status === 401 
                && originalRequest.url === "http://localhost:3001/auth/refreshToken" ){ 
                  // si la requête qui echoue en 401 vient de l'url "refreshToken"
-                console.log("le compte de l'utilisateur n'existe pas")
                 localStorage.removeItem("accesToken")
                 localStorage.removeItem("refreshToken")
                 setAuthState({
@@ -40,9 +40,9 @@ function App() {
                   id: 0,
                   status: false
                 })
-               alert("le compte de l'utilisateur n'existe pas, veuillez contacter l'entreprise")
-               return Promise.reject(error)
-                 
+                // navigate("/login")
+                alert("le compte de l'utilisateur n'existe pas, veuillez contacter l'entreprise")
+                return Promise.reject(error).then   
              }
 
         if (error.response.status === 401 && !originalRequest._retry) {

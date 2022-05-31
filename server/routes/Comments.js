@@ -17,7 +17,7 @@ router.post("/", validateToken, async (req, res) => {
   const username = req.user.username   //req.user qui nous vient de validateToken
   comment.username = username // le commentaire contient donc aussi le username
   await Comments.create(comment)
-  const newComment = await Comments.findOne({ order: [["id", "DESC"]] })
+  const newComment = await Comments.findOne({ order: [["id", "DESC"]] }) //permet d'avoir accés au dernier pour le supprimer
   res.json(newComment);
 });
 
