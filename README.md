@@ -32,7 +32,7 @@ Les utilisateurs peuvent ensuite poster des messages ou des documents sur la pag
 
 Un compte administrateur pouvant supprimer n'importe quel post ou commentaire existe: il appartient a la personne contrôlant le nom d’utilisateur "communiqué à l'entreprise" Ceci est codé en dur dans l'api est entre en fonction au moment de la création d'un compte ce nom d’utilisateur.
 
-##Variables d'environnement
+## Variables d'environnement
 
 Le site utilise des variables d'environnement regroupées dans le fichier .env  qui devra être localisé dans le dossier /server.
 ACCESS_TOKEN et REFRESH_TOKEN-SECRET permettent  à jsonwebtoken de créer des tokens d'authentification.
