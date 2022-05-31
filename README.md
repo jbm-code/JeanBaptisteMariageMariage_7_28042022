@@ -31,7 +31,8 @@ Les utilisateurs peuvent créer un profil. Les seules données personnelles cons
 Les utilisateurs peuvent ensuite poster des messages ou des documents sur la page d'accueil et commenter ce que les autres ont posté. Ils peuvent aussi modifier le titre ou le contenu d'un post textuel ou d'un commentaire dont ils sont le propriétaire , les photos ne peuvent pas être modifiée pour l'instant.
 
 Un compte administrateur pouvant supprimer n'importe quel post ou commentaire existe: il appartient a la personne contrôlant le nom d’utilisateur "communiqué à l'entreprise" Ceci est codé en dur dans l'api est entre en fonction au moment de la création d'un compte ce nom d’utilisateur.
-Variables d'environnement
+
+##Variables d'environnement
 
 Le site utilise des variables d'environnement regroupées dans le fichier .env  qui devra être localisé dans le dossier /server.
 ACCESS_TOKEN et REFRESH_TOKEN-SECRET permettent  à jsonwebtoken de créer des tokens d'authentification.
