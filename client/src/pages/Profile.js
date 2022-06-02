@@ -33,13 +33,18 @@ function Profile() {
             headers: { accesToken: localStorage.getItem("accesToken") }
         })
             .then(() => {
-                localStorage.removeItem("accesToken")
-                setAuthState({                                                    // contexte d'affichage authentification
-                    username: "",
-                    id: 0,
-                    status: false
-                })
-                navigate("/login")
+
+                if (authState.username === username || authState.username === !"isAdmin") {
+                    localStorage.removeItem("accesToken")
+                    setAuthState({                                                    // contexte d'affichage authentification
+                        username: "",
+                        id: 0,
+                        status: false
+                    })
+                    navigate("/login")
+                } else {
+                    navigate("/")
+                }   
             })
         alert("le compte a été supprimé")    
     }

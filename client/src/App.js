@@ -42,7 +42,7 @@ function App() {
                 })
                 // navigate("/login")
                 alert("le compte de l'utilisateur n'existe pas, veuillez contacter l'entreprise")
-                return Promise.reject(error).then   
+                return Promise.reject(error)  
              }
 
         if (error.response.status === 401 && !originalRequest._retry) {
