@@ -8,7 +8,10 @@ Dans le dossier 'server' lancer la commande:
 npm install
 ```
 pour installer les dépendances.
-Les données de connexion à la base de données sont contenus dans le fichiers d'environnement   "config.json" qui sera placé dans le dossier /server/config/config.json
+Les données de connexion à la base de données sont contenus dans le fichiers d'environnement   "config.json" qui est placé dans le dossier /server/config/config.json.</br>
+Vouzs devez donner une valeur aux identifiants :</br>
+"username" = ""</br>
+"password" = ""</br>
 On lance ensuite la commande : 
 ```bash
 npm start
