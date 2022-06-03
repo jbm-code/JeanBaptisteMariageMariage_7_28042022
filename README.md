@@ -7,13 +7,18 @@ Dans le dossier 'server' lancer la commande:
 ```bash
 npm install
 ```
-pour installer les dépendances.
-Les données de connexion à la base de données sont contenus dans le fichiers d'environnement   "config.json" qui sera placé dans le dossier /server/config/config.json
+pour installer les dépendances.</br>
+
+Les données de connexion à la base de données sont contenus dans le fichiers d'environnement   "config.json" qui est placé dans le dossier /server/config/config.json.</br>
+Vous devez donner une valeur aux identifiants :</br>
+"username" = ""</br>
+"password" = ""</br>
+
 On lance ensuite la commande : 
 ```bash
 npm start
 ```
-Il faudra aussi créer un dossier images, qui sera placé ici : server/images
+
 ## Client
 Le frontend est une application Reactjs créée avec l'utilitaire create-react-app. 
 L'installation des dépendance se fait avec la commande :
@@ -34,8 +39,8 @@ Un compte administrateur pouvant supprimer n'importe quel post ou commentaire ex
 
 ## Variables d'environnement
 
-Le site utilise des variables d'environnement regroupées dans le fichier .env  qui est localisé dans le dossier /server.
-Vous devez donner des valeurs aux clefs :
-ACCESS_TOKEN =
-REFRESH_TOKEN-SECRET =
+Le site utilise des variables d'environnement regroupées dans le fichier .env  qui est localisé dans le dossier /server.</br>
+Vous devez donner des valeurs aux clefs :</br>
+ACCESS_TOKEN =</br>
+REFRESH_TOKEN-SECRET =</br>
 qui permettent  à jsonwebtoken de créer des tokens d'authentification.
