@@ -34,5 +34,8 @@ Un compte administrateur pouvant supprimer n'importe quel post ou commentaire ex
 
 ## Variables d'environnement
 
-Le site utilise des variables d'environnement regroupées dans le fichier .env  qui devra être localisé dans le dossier /server.
-ACCESS_TOKEN et REFRESH_TOKEN-SECRET permettent  à jsonwebtoken de créer des tokens d'authentification.
+Le site utilise des variables d'environnement regroupées dans le fichier .env  qui est localisé dans le dossier /server.
+Vous devez donner des valeurs aux clefs :
+ACCESS_TOKEN =
+REFRESH_TOKEN-SECRET =
+qui permettent  à jsonwebtoken de créer des tokens d'authentification.
