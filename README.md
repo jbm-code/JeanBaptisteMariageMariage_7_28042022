@@ -7,16 +7,18 @@ Dans le dossier 'server' lancer la commande:
 ```bash
 npm install
 ```
-pour installer les dépendances.
+pour installer les dépendances.</br>
+
 Les données de connexion à la base de données sont contenus dans le fichiers d'environnement   "config.json" qui est placé dans le dossier /server/config/config.json.</br>
-Vouzs devez donner une valeur aux identifiants :</br>
+Vous devez donner une valeur aux identifiants :</br>
 "username" = ""</br>
 "password" = ""</br>
+
 On lance ensuite la commande : 
 ```bash
 npm start
 ```
-Il faudra aussi créer un dossier images, qui sera placé ici : server/images
+
 ## Client
 Le frontend est une application Reactjs créée avec l'utilitaire create-react-app. 
 L'installation des dépendance se fait avec la commande :
